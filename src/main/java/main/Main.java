@@ -1,0 +1,21 @@
+package main;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+import servlets.MirrorRequestsServlet;
+
+public class Main {
+    public static void main(String[] args) throws Exception{
+        MirrorRequestsServlet mirrorRequestsServlet = new MirrorRequestsServlet();
+        ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        handler.addServlet(new ServletHolder(mirrorRequestsServlet), "/mirror");
+
+        Server server = new Server(8080);
+        server.setHandler(handler);
+
+        server.start();
+        System.out.println("Server started");
+        server.join();
+    }
+}
