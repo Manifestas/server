@@ -9,6 +9,8 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import servlets.SessionsServlet;
+import servlets.SignInServlet;
+import servlets.SignUpServlet;
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -18,6 +20,8 @@ public class Main {
 
         ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         contextHandler.addServlet(new ServletHolder(new SessionsServlet(accountService)), "/api/v1/sessions");
+        contextHandler.addServlet(new ServletHolder(new SignUpServlet(accountService)), "/signup");
+        contextHandler.addServlet(new ServletHolder(new SignInServlet(accountService)), "/signin");
 
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setResourceBase("public_html");
