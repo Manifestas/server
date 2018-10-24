@@ -2,6 +2,7 @@ package servlets;
 
 import accounts.AccountService;
 import accounts.UserProfile;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,10 @@ public class SessionsServlet extends HttpServlet {
             resp.setContentType("text/html;charset=utf-8");
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         } else {
+            Gson gson = new Gson();
+            String json = gson.toJson(userProfile);
             resp.setContentType("text/html;charset=utf-8");
+            resp.getWriter().println(json);
             resp.setStatus(HttpServletResponse.SC_OK);
         }
     }
