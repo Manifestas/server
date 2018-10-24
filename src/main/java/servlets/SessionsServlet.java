@@ -61,8 +61,19 @@ public class SessionsServlet extends HttpServlet {
         resp.setStatus(HttpServletResponse.SC_OK);
     }
 
+    // sign out
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        String sessionId = req.getSession().getId();
+        UserProfile userProfile = accountService.getUserBySessionId(sessionId);
+        if (userProfile == null) {
+            resp.setContentType("text/html;charset=utf-8");
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        } else {
+            accountService.deleteSession(sessionId);
+            resp.setContentType("text/html;charset=utf-8");
+            resp.getWriter().println("Goodbye!");
+            resp.setStatus(HttpServletResponse.SC_OK);
+        }
     }
 }
