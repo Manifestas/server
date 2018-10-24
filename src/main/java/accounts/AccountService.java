@@ -17,7 +17,7 @@ public class AccountService {
         loginToProfile.put(userProfile.getLogin(), userProfile);
     }
 
-    public UserProfile getLoginByProfile(String login) {
+    public UserProfile getUserByLogin(String login) {
         return loginToProfile.get(login);
     }
 
