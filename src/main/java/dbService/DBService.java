@@ -1,6 +1,7 @@
 package dbService;
 
 import dataSets.UsersDataSet;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -38,5 +39,15 @@ public class DBService {
                 .setProperty("hibernate.show_sql", hibernate_show_sql)
                 .setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
         return configuration;
+    }
+    public void printConnectInfo() {
+        try (Session session = sessionFactory.openSession()) {
+            session.doWork(connection -> {
+                System.out.println("DB name: " + connection.getMetaData().getDatabaseProductName());
+                System.out.println("DB version: " + connection.getMetaData().getDatabaseProductVersion());
+                System.out.println("Driver: " + connection.getMetaData().getDriverName());
+                System.out.println("Autocommit: " + connection.getAutoCommit());
+            });
+        }
     }
 }
