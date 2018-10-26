@@ -1,8 +1,11 @@
 package dbService;
 
 import dataSets.UsersDataSet;
+import dbService.dao.UsersDAO;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -48,6 +51,25 @@ public class DBService {
                 System.out.println("Driver: " + connection.getMetaData().getDriverName());
                 System.out.println("Autocommit: " + connection.getAutoCommit());
             });
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public UsersDataSet getUser(long id) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            UsersDAO dao = new UsersDAO(session);
+            return dao.get(id);
+        }
+    }
+
+    public long addUser(String name) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            UsersDAO dao = new UsersDAO(session);
+            long id = dao.insertUser(name);
+            transaction.commit();
+            return  id;
         }
     }
 }
