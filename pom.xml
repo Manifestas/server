@@ -11,6 +11,9 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <org.eclipse.jetty.jetty-server.version>9.4.12.v20180830</org.eclipse.jetty.jetty-server.version>
+        <org.eclipse.jetty.jetty-webapp.version>9.4.12.v20180830</org.eclipse.jetty.jetty-webapp.version>
     </properties>
 
     <build>
@@ -42,16 +45,18 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.3.0.M1</version>
+            <version>${org.eclipse.jetty.jetty-server.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>9.3.0.M0</version>
+            <version>${org.eclipse.jetty.jetty-webapp.version}</version>
         </dependency>
 
         <dependency>
