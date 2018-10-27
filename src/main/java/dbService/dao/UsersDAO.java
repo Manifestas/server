@@ -21,7 +21,7 @@ public class UsersDAO {
         return session.get(UsersDataSet.class, id);
     }
 
-    public long getUserId(String name) {
+    public UsersDataSet get(String name) {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         // create a CriteriaQuery object with the specified result type.
         CriteriaQuery<UsersDataSet> criteriaQuery = criteriaBuilder.createQuery(UsersDataSet.class);
@@ -30,7 +30,15 @@ public class UsersDAO {
         criteriaQuery.where(criteriaBuilder.equal(usersDataSetRoot.get("name"), name));
         Query<UsersDataSet> query = session.createQuery(criteriaQuery);
         UsersDataSet result = query.getSingleResult();
-        return result.getId();
+        return result;
+    }
+
+    public long getUserId(String name) {
+        UsersDataSet user = get(name);
+        if (user != null) {
+            return user.getId();
+        }
+        return 0;
 
     }
 

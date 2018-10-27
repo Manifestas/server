@@ -18,7 +18,7 @@ public class UsersDataSet implements Serializable { // Serializable important fo
     @Column(name = "name", unique = true, updatable = false, nullable = false)
     private String name;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "email")

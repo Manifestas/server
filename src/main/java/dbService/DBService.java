@@ -15,7 +15,7 @@ public class DBService {
 
     private static final String hibernate_show_sql = "true";
     // With create-drop, the database schema will be dropped when the SessionFactory is closed explicitly.
-    private static final String hibernate_hbm2ddl_auto = "create";
+    private static final String hibernate_hbm2ddl_auto = "update";
 
     private final SessionFactory sessionFactory;
 
@@ -76,6 +76,13 @@ public class DBService {
         try (Session session = sessionFactory.openSession()) {
             UsersDAO dao = new UsersDAO(session);
             return dao.get(id);
+        }
+    }
+
+    public UsersDataSet getUser(String name) {
+        try (Session session = sessionFactory.openSession()) {
+            UsersDAO dao = new UsersDAO(session);
+            return dao.get(name);
         }
     }
 

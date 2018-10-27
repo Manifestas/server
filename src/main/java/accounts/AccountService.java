@@ -1,5 +1,6 @@
 package accounts;
 
+import dataSets.UsersDataSet;
 import dbService.DBService;
 
 import java.util.HashMap;
@@ -24,7 +25,13 @@ public class AccountService {
     }
 
     public UserProfile getUserByLogin(String login) {
-        return loginToProfile.get(login);
+        if (loginToProfile.get(login) != null) {
+            return loginToProfile.get(login);
+        } else {
+            UsersDataSet user = dbService.getUser(login);
+            return new UserProfile(user.getName(), user.getPassword(), user.getEmail());
+        }
+
     }
 
     public UserProfile getUserBySessionId(String sessionId) {
