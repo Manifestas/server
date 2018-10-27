@@ -19,7 +19,7 @@ public class DBService {
     private final SessionFactory sessionFactory;
 
     public DBService() {
-        Configuration configuration = getMySqlConfiguration();
+        Configuration configuration = getH2Configuration();
         sessionFactory = createSessionFactory(configuration);
     }
 
@@ -43,6 +43,21 @@ public class DBService {
                 .setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
         return configuration;
     }
+
+    private Configuration getH2Configuration() {
+        Configuration configuration = new Configuration();
+        configuration.addAnnotatedClass(UsersDataSet.class);
+
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
+                .setProperty("hibernate.connection.driver_class", "org.h2.Driver")
+                .setProperty("hibernate.connection.url", "jdbc:h2:./h2db")
+                .setProperty("hibernate.connection.username", "test")
+                .setProperty("hibernate.connection.password", "test")
+                .setProperty("hibernate.show_sql", hibernate_show_sql)
+                .setProperty("hibernate.hbm2ddl.auto", hibernate_hbm2ddl_auto);
+        return configuration;
+    }
+
     public void printConnectInfo() {
         try (Session session = sessionFactory.openSession()) {
             session.doWork(connection -> {

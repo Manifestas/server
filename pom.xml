@@ -16,6 +16,7 @@
         <org.eclipse.jetty.jetty-webapp.version>9.4.12.v20180830</org.eclipse.jetty.jetty-webapp.version>
         <mysql.mysql-connector-java.version>8.0.13</mysql.mysql-connector-java.version>
         <org.hibernate.hibernate-core.version>5.3.7.Final</org.hibernate.hibernate-core.version>
+        <com.h2database.h2.version>1.4.197</com.h2database.h2.version>
     </properties>
 
     <build>
@@ -85,6 +86,13 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${org.hibernate.hibernate-core.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${com.h2database.h2.version}</version>
         </dependency>
 
 
