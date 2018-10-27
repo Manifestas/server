@@ -1,5 +1,6 @@
 package dbService;
 
+import accounts.UserProfile;
 import dataSets.UsersDataSet;
 import dbService.dao.UsersDAO;
 import org.hibernate.HibernateException;
@@ -83,6 +84,16 @@ public class DBService {
             Transaction transaction = session.beginTransaction();
             UsersDAO dao = new UsersDAO(session);
             long id = dao.insertUser(name);
+            transaction.commit();
+            return  id;
+        }
+    }
+
+    public long addUser(UserProfile userProfile) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            UsersDAO dao = new UsersDAO(session);
+            long id = dao.insertUser(userProfile);
             transaction.commit();
             return  id;
         }

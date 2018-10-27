@@ -1,5 +1,7 @@
 package dataSets;
 
+import accounts.UserProfile;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,6 +17,12 @@ public class UsersDataSet implements Serializable { // Serializable important fo
 
     @Column(name = "name", unique = true, updatable = false, nullable = false)
     private String name;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "email")
+    private String email;
 
     // important for Hibernate
     @SuppressWarnings("UnusedDeclaration")
@@ -32,6 +40,13 @@ public class UsersDataSet implements Serializable { // Serializable important fo
         setName(name);
     }
 
+    public UsersDataSet(UserProfile userProfile) {
+        setId(-1);
+        setName(userProfile.getLogin());
+        setPassword(userProfile.getPass());
+        setEmail(userProfile.getEmail());
+    }
+
     public long getId() {
         return id;
     }
@@ -46,6 +61,22 @@ public class UsersDataSet implements Serializable { // Serializable important fo
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

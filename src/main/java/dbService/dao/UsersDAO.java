@@ -1,5 +1,6 @@
 package dbService.dao;
 
+import accounts.UserProfile;
 import dataSets.UsersDataSet;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -35,5 +36,9 @@ public class UsersDAO {
 
     public long insertUser(String name) {
         return (Long) session.save(new UsersDataSet(name));
+    }
+
+    public long insertUser(UserProfile userProfile) {
+        return (Long) session.save(new UsersDataSet(userProfile));
     }
 }
