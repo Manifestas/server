@@ -17,6 +17,7 @@
         <mysql.mysql-connector-java.version>8.0.13</mysql.mysql-connector-java.version>
         <org.hibernate.hibernate-core.version>5.3.7.Final</org.hibernate.hibernate-core.version>
         <com.h2database.h2.version>1.4.197</com.h2database.h2.version>
+        <org.eclipse.jety.websocket-websocket-servlet>9.4.12.v20180830</org.eclipse.jety.websocket-websocket-servlet>
     </properties>
 
     <build>
@@ -93,6 +94,13 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${com.h2database.h2.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-servlet -->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-servlet</artifactId>
+            <version>${org.eclipse.jety.websocket-websocket-servlet}</version>
         </dependency>
 
 
