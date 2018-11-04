@@ -1,6 +1,6 @@
 package resources;
 
-public class TestResourceServer implements TestResourceServerMBean{
+public class TestResourceServer {
 
     private TestResource testResource;
 
@@ -8,13 +8,16 @@ public class TestResourceServer implements TestResourceServerMBean{
         this.testResource = testResource;
     }
 
-    @Override
     public String getName() {
         return testResource.getName();
     }
 
-    @Override
     public int getAge() {
         return testResource.getAge();
+    }
+
+    public void setTestResource(TestResource testResource) {
+        this.testResource = testResource;
+
     }
 }

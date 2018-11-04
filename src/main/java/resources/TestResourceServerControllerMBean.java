@@ -1,6 +1,6 @@
 package resources;
 
-public interface TestResourceServerMBean {
+public interface TestResourceServerControllerMBean {
 
     public String getName();
     public int getAge();
