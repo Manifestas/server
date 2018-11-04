@@ -6,7 +6,7 @@ public class ReflectionHelper {
 
     public static Object createInstance(String className) {
         try {
-            return Class.forName(className);
+            return Class.forName(className).newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
